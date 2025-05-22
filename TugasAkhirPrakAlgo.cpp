@@ -5,12 +5,14 @@
 
 using namespace std;
 
+//struct tanggal
 struct Tanggal{
     int tanggal;
     int bulan;
     int tahun;
 };
 
+//struct parkir
 struct parkir {
     char plat[20];
     char jenis[10]; 
