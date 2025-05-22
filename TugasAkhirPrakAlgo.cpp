@@ -5,7 +5,7 @@
 
 using namespace std;
 
-//struct tanggal
+
 struct Tanggal{
     int tanggal;
     int bulan;
