@@ -83,3 +83,25 @@ void tambahParkir(char *plat, char *jenis, int tanggal, int bulan, int tahun, in
     head = newparkir;
     cout << "Data parkir berhasil ditambahkan!" << endl;
 }
+
+void tampilkanData() {
+    parkir* temp = head;
+    if (temp == NULL) {
+        cout << "Belum ada data parkir." << endl;
+        return;
+    }
+    cout <<"====== Riwayat Parkir ======" << endl;
+    cout << endl;
+    while(temp!=NULL) {
+        cout << "Plat           : " << temp->plat << endl;
+        cout << "Jenis          : " << temp->jenis << endl;
+        cout << "Tanggal        : " << temp->tgl.tanggal << "-" << temp->tgl.bulan << "-" << temp->tgl.tahun << endl;
+        cout << "Jam Masuk      : " << temp->jamMasuk << ":" << temp->menitMasuk << endl;
+        cout << "Jam Keluar     : " << temp->jamKeluar << ":" << temp->menitKeluar << endl;
+        cout << "Durasi         : " << temp->durasiJam << " jam" << endl;
+        cout << "Biaya          : Rp." << temp->biaya << "-" << endl;
+        cout << endl;
+        temp = temp->next;
+
+    }
+}
