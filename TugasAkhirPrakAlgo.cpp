@@ -54,3 +54,14 @@ int hitungMenit(int jamMasuk, int menitMasuk, int jamKeluar, int menitKeluar) {
     }
     return durasiJam;
 }
+
+int hitungBiaya(char* jenis, int durasiJam) {
+    if(strcmp(jenis, "motor") == 0) {
+        return durasiJam * 2000;
+    } 
+    else if(strcmp(jenis, "mobil") == 0) {
+        return durasiJam * 5000;
+    } else {
+        return 0; 
+    }
+}
