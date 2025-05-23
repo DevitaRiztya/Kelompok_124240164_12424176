@@ -27,3 +27,18 @@ struct parkir {
 };
 
 struct parkir* head = NULL;
+
+int omsetPerMinggu(int tanggal) {
+    if(tanggal >= 1 && tanggal <= 7) {
+        return 1;
+    }
+    else if(tanggal >= 8 && tanggal <= 14) {
+        return 2;
+    }
+    else if(tanggal >= 15 && tanggal <= 21) {
+        return 3;
+    }
+    else{
+        return 4;
+    }
+}
