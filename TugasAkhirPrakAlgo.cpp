@@ -42,3 +42,15 @@ int omsetPerMinggu(int tanggal) {
         return 4;
     }
 }
+
+int hitungMenit(int jamMasuk, int menitMasuk, int jamKeluar, int menitKeluar) {
+    int totalMasuk = (jamMasuk * 60) + menitMasuk;
+    int totalKeluar = (jamKeluar * 60) + menitKeluar;
+    int durasi = totalKeluar - totalMasuk;
+
+    int durasiJam = durasi / 60;
+    if (durasi % 60 != 0) {
+        durasiJam++;
+    }
+    return durasiJam;
+}
