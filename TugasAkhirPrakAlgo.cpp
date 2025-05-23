@@ -65,3 +65,21 @@ int hitungBiaya(char* jenis, int durasiJam) {
         return 0; 
     }
 }
+
+void tambahParkir(char *plat, char *jenis, int tanggal, int bulan, int tahun, int jamMasuk, int jamKeluar, int menitMasuk, int menitKeluar, int durasiJam) {
+    parkir *newparkir = new parkir;
+    strcpy(newparkir->plat, plat);
+    strcpy(newparkir->jenis, jenis);
+    newparkir->tgl.tanggal = tanggal;
+    newparkir->tgl.bulan = bulan;
+    newparkir->tgl.tahun = tahun;
+    newparkir->jamMasuk = jamMasuk;
+    newparkir->jamKeluar = jamKeluar;
+    newparkir->menitMasuk = menitMasuk;
+    newparkir->menitKeluar = menitKeluar;
+    newparkir->durasiJam = durasiJam;
+    newparkir->biaya = hitungBiaya(jenis,newparkir-> durasiJam);
+    newparkir->next = head;
+    head = newparkir;
+    cout << "Data parkir berhasil ditambahkan!" << endl;
+}
