@@ -1,0 +1,16 @@
+_______________________
+Plat       : AD 7777 UU
+Jenis      : motor
+Tanggal    : 22-09-1999
+Jam Masuk  : 12:00
+Jam Keluar : 21:00
+Durasi     : 9 jam
+Biaya      : Rp 18000,-
+_______________________
+Plat       : WW 9999 OO
+Jenis      : mobil
+Tanggal    : 12-09-1000
+Jam Masuk  : 12:00
+Jam Keluar : 13:55
+Durasi     : 2 jam
+Biaya      : Rp 10000,-

@@ -1,7 +1,6 @@
-//Networked Parking System
+//24-hour Networked Parking System
 #include <iostream>
 #include <string.h> 
-#include <fstream>
 
 using namespace std;
 
@@ -167,26 +166,48 @@ void cariParkir(char* keyword) {
         cout << "Data tidak ditemukan." << endl;
 }
 
-//simpan ke file 
+//simpan ke file
 void simpanKeFile() {
-    ofstream file("DataParkir.txt",ios::app); 
-    if(!file) { 
-        cout << "gagal membuka file." << endl;
+    FILE *file = fopen("DataParkir.txt", "a");
+    if (file == NULL) {
+        printf("Gagal membuka file.\n");
         return;
     }
     parkir* temp = head;
-    while(temp) {
-        file << "_______________________" << endl;
-        file << "Plat    : " << temp->plat << endl; 
-        file << "Jenis   : " << temp->jenis << endl;
-        file << "Tanggal : " << temp->tgl.tanggal << "-" << temp->tgl.bulan << "-" << temp->tgl.tahun << endl;
-        file << "Durasi  : " << temp->durasiJam << " jam" << endl; 
-        file << "Biaya   : Rp " <<  temp->biaya << ",-" << endl;
+    while (temp != NULL) {
+        fprintf(file, "_______________________\n");
+        fprintf(file, "Plat       : %s\n", temp->plat);
+        fprintf(file, "Jenis      : %s\n", temp->jenis);
+        fprintf(file, "Tanggal    : %02d-%02d-%04d\n", temp->tgl.tanggal, temp->tgl.bulan, temp->tgl.tahun);
+        fprintf(file, "Jam Masuk  : %02d:%02d\n", temp->jamMasuk, temp->menitMasuk);
+        fprintf(file, "Jam Keluar : %02d:%02d\n", temp->jamKeluar, temp->menitKeluar);
+        fprintf(file, "Durasi     : %d jam\n", temp->durasiJam);
+        fprintf(file, "Biaya      : Rp %d,-\n", temp->biaya);
         temp = temp->next;
     }
-    file.close(); 
-    cout << "Data berhasil disimpan ke file." << endl;
+    fclose(file);
+    printf("Data berhasil disimpan ke file (DataParkir.txt).\n");
 }
+
+// void simpanKeFile() {
+//     ofstream file("DataParkir.txt",ios::app); 
+//     if(!file) { 
+//         cout << "gagal membuka file." << endl;
+//         return;
+//     }
+//     parkir* temp = head;
+//     while(temp) {
+//         file << "_______________________" << endl;
+//         file << "Plat    : " << temp->plat << endl; 
+//         file << "Jenis   : " << temp->jenis << endl;
+//         file << "Tanggal : " << temp->tgl.tanggal << "-" << temp->tgl.bulan << "-" << temp->tgl.tahun << endl;
+//         file << "Durasi  : " << temp->durasiJam << " jam" << endl; 
+//         file << "Biaya   : Rp " <<  temp->biaya << ",-" << endl;
+//         temp = temp->next;
+//     }
+//     file.close(); 
+//     cout << "Data berhasil disimpan ke file." << endl;
+// }
 
 //menu
 void menu() {
