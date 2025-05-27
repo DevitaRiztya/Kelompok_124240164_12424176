@@ -189,26 +189,6 @@ void simpanKeFile() {
     printf("Data berhasil disimpan ke file (DataParkir.txt).\n");
 }
 
-// void simpanKeFile() {
-//     ofstream file("DataParkir.txt",ios::app); 
-//     if(!file) { 
-//         cout << "gagal membuka file." << endl;
-//         return;
-//     }
-//     parkir* temp = head;
-//     while(temp) {
-//         file << "_______________________" << endl;
-//         file << "Plat    : " << temp->plat << endl; 
-//         file << "Jenis   : " << temp->jenis << endl;
-//         file << "Tanggal : " << temp->tgl.tanggal << "-" << temp->tgl.bulan << "-" << temp->tgl.tahun << endl;
-//         file << "Durasi  : " << temp->durasiJam << " jam" << endl; 
-//         file << "Biaya   : Rp " <<  temp->biaya << ",-" << endl;
-//         temp = temp->next;
-//     }
-//     file.close(); 
-//     cout << "Data berhasil disimpan ke file." << endl;
-// }
-
 //menu
 void menu() {
     char plat[20];
