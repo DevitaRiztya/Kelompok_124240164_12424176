@@ -5,7 +5,6 @@
 
 using namespace std;
 
-
 struct Tanggal{
     int tanggal;
     int bulan;
@@ -104,4 +103,176 @@ void tampilkanData() {
         temp = temp->next;
 
     }
+}
+
+void sortByTanggal() {
+    if(head==NULL){
+        return;
+    }
+    parkir* temp1=head;
+    while(temp1!=NULL){
+        parkir*temp2=temp1->next;
+        while(temp2!=NULL){
+            if(temp1->tgl.tanggal > temp2->tgl.tanggal) {
+                swap(*temp1, *temp1);
+                swap(temp1->next, temp2->next);
+            }
+            temp2=temp2->next;
+        }
+        temp1=temp1->next;
+    }
+}
+
+void totalPerMinggu() {
+    int total[4] = {0};
+    parkir* temp = head; 
+    while(temp) {
+        int minggu = omsetPerMinggu(temp->tgl.tanggal)-1; 
+        total[minggu] += temp->biaya; 
+        temp = temp->next; 
+    }
+    cout << "===== Pendapatan Per-Minggu =====" << endl;
+    for (int i = 0; i < 4; i++) { 
+        cout << "Minggu ke-" << i+1 << " : Rp " << total[i] << ",-" << endl;
+    }
+    cout << "Total bulan ini : Rp " << total[0] + total[1] + total[2] + total[3] << ",-" << endl;
+}
+
+void cariParkir(char* keyword) {
+    parkir* temp = head; 
+    int ditemukan = 0; 
+    while(temp) { 
+        if (strstr(temp->plat, keyword) || strstr(temp->jenis, keyword)){ 
+            cout << "Plat        : " << temp->plat << endl;
+            cout << "Jenis       : " << temp->jenis << endl;
+            cout << "Tanggal     : " << temp->tgl.tanggal << "-" << temp->tgl.bulan << "-" << temp->tgl.tahun << endl;
+            cout << "Jam Masuk   : " << temp->jamMasuk << ":" << temp->menitMasuk << endl;
+            cout << "Jam Keluar  : " << temp->jamKeluar << ":" << temp->menitKeluar << endl;
+            cout << "Durasi      : " << temp->durasiJam << " jam" << endl;
+            cout << "Biaya       : Rp " << temp->biaya << ",-" << endl;
+            cout << endl;
+            ditemukan = 1; 
+        }
+        temp = temp->next; 
+    }
+    if(!ditemukan)
+        cout << "Data tidak ditemukan." << endl;
+}
+
+void simpanKeFile() {
+    ofstream file("DataParkir.txt",ios::app); 
+    if(!file) { 
+        cout << "gagal membuka file." << endl;
+        return;
+    }
+    parkir* temp = head;
+    while(temp) {
+        file << "_______________________" << endl;
+        file << "Plat    : " << temp->plat << endl; 
+        file << "Jenis   : " << temp->jenis << endl;
+        file << "Tanggal : " << temp->tgl.tanggal << "-" << temp->tgl.bulan << "-" << temp->tgl.tahun << endl;
+        file << "Durasi  : " << temp->durasiJam << " jam" << endl; 
+        file << "Biaya   : Rp " <<  temp->biaya << ",-" << endl;
+        temp = temp->next;
+    }
+    file.close(); 
+    cout << "Data berhasil disimpan ke file." << endl;
+}
+
+void menu() {
+    char plat[20];
+    char jenis[10];
+    int tanggal, bulan, tahun, jamMasuk, jamKeluar, durasiMenit, menitMasuk, menitKeluar, durasiJam, n, x;
+
+    do {
+        system("cls");
+        cout << "======== SISTEM PARKIR ========" << endl;
+        cout << "1. Tambah Data Parkir" << endl;
+        cout << "2. Tampilkan Semua Data" << endl;
+        cout << "3. Tampilkan Total Per Minggu" << endl;
+        cout << "4. Cari Data Parkir" << endl;
+        cout << "5. Simpan Ke File" << endl;
+        cout << "0. Exit" << endl;
+        cout << "Pilihan : "; cin >> n;
+        cout << endl;
+        cin.ignore();
+        
+        switch(n) {
+            case 1 :
+            {
+                cout << "Berapa banyak kendaraan yang mau anda input? "; cin >> x;
+                cout << endl;
+                cin.ignore();
+
+                for (int i = 0; i < x; i++){
+                    cout << "________________________________" << endl;
+                    cout << "Data ke-" << i+1 << endl;
+                    cout << "Plat nomor          : "; cin.getline(plat, sizeof(plat));
+                    cout << "Jenis (motor/mobil) : "; cin.getline(jenis, sizeof(jenis));
+                    printf("Tanggal             : "); scanf("%d-%d-%d", &tanggal, &bulan, &tahun);
+                    printf("Jam Masuk           : "); scanf("%d.%d", &jamMasuk, &menitMasuk);
+                    printf("Jam Keluar          : "); scanf("%d.%d", &jamKeluar, &menitKeluar);
+                    cout << endl;
+                    cin.ignore();
+
+                    if(tanggal<1 || tanggal>31 || jamMasuk<0 || jamKeluar>24 || jamKeluar<=jamMasuk) {
+                        cout << "Input tidak valid!" << endl;
+                        i--;
+                    } else {
+                        durasiJam = hitungMenit(jamMasuk, menitMasuk, jamKeluar, menitKeluar);
+                        tambahParkir(plat, jenis, tanggal, bulan, tahun, jamMasuk, jamKeluar, menitMasuk, menitKeluar, durasiJam);
+                    }
+                }
+                system("pause");
+                break;
+            }
+            case 2:
+            {
+                sortByTanggal();
+                tampilkanData();
+                system("pause");
+                break;
+            }
+            case 3:
+            {
+                totalPerMinggu();
+                system("pause");
+                break;
+            }
+            case 4:
+            {
+                cout << "Masukan plat nomor : "; cin.getline(plat, sizeof(plat));
+                cout << endl;
+                cariParkir(plat);
+                system("pause");
+                break;
+            }  
+            case 5:
+            {
+                simpanKeFile();
+                system("pause");
+                break;
+            } 
+            case 0:
+            {
+                cout << "Keluar dari program" << endl;
+                break;
+            }
+            default:
+            {
+                cout << "pilihan tidak valid" << endl;
+            }   
+        }
+    } while(n!=0);
+}
+
+int main() {
+    menu();
+    parkir* temp; 
+    while (head != NULL) { 
+        temp = head; 
+        head = head->next;
+        delete temp; 
+    }
+    return 0;
 }
