@@ -27,6 +27,7 @@ struct parkir {
 
 struct parkir* head = NULL;
 
+//fungsi untuk mengelompokan pemasukan perminggu
 int omsetPerMinggu(int tanggal) {
     if(tanggal >= 1 && tanggal <= 7) {
         return 1;
@@ -42,6 +43,7 @@ int omsetPerMinggu(int tanggal) {
     }
 }
 
+//fungsi pembulatan menit lebih
 int hitungMenit(int jamMasuk, int menitMasuk, int jamKeluar, int menitKeluar) {
     int totalMasuk = (jamMasuk * 60) + menitMasuk;
     int totalKeluar = (jamKeluar * 60) + menitKeluar;
@@ -54,6 +56,7 @@ int hitungMenit(int jamMasuk, int menitMasuk, int jamKeluar, int menitKeluar) {
     return durasiJam;
 }
 
+//fungsi menghitung biaya per jenis kendaraan
 int hitungBiaya(char* jenis, int durasiJam) {
     if(strcmp(jenis, "motor") == 0) {
         return durasiJam * 2000;
@@ -65,6 +68,7 @@ int hitungBiaya(char* jenis, int durasiJam) {
     }
 }
 
+//menambahkan data parkir baru ke dalam linked list
 void tambahParkir(char *plat, char *jenis, int tanggal, int bulan, int tahun, int jamMasuk, int jamKeluar, int menitMasuk, int menitKeluar, int durasiJam) {
     parkir *newparkir = new parkir;
     strcpy(newparkir->plat, plat);
@@ -83,6 +87,7 @@ void tambahParkir(char *plat, char *jenis, int tanggal, int bulan, int tahun, in
     cout << "Data parkir berhasil ditambahkan!" << endl;
 }
 
+//menampilkan data yang sudah diinput
 void tampilkanData() {
     parkir* temp = head;
     if (temp == NULL) {
@@ -105,6 +110,7 @@ void tampilkanData() {
     }
 }
 
+//sorting data parkir sesuai tanggal 
 void sortByTanggal() {
     if(head==NULL){
         return;
@@ -123,6 +129,7 @@ void sortByTanggal() {
     }
 }
 
+//menghitung total pemasukan dalam minggu
 void totalPerMinggu() {
     int total[4] = {0};
     parkir* temp = head; 
@@ -138,6 +145,7 @@ void totalPerMinggu() {
     cout << "Total bulan ini : Rp " << total[0] + total[1] + total[2] + total[3] << ",-" << endl;
 }
 
+//search data
 void cariParkir(char* keyword) {
     parkir* temp = head; 
     int ditemukan = 0; 
@@ -159,6 +167,7 @@ void cariParkir(char* keyword) {
         cout << "Data tidak ditemukan." << endl;
 }
 
+//simpan ke file 
 void simpanKeFile() {
     ofstream file("DataParkir.txt",ios::app); 
     if(!file) { 
@@ -179,6 +188,7 @@ void simpanKeFile() {
     cout << "Data berhasil disimpan ke file." << endl;
 }
 
+//menu
 void menu() {
     char plat[20];
     char jenis[10];
