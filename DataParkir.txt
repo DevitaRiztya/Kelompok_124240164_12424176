@@ -14,3 +14,19 @@ Jam Masuk  : 12:00
 Jam Keluar : 13:55
 Durasi     : 2 jam
 Biaya      : Rp 10000,-
+_______________________
+Plat       : AA 7890 UU
+Jenis      : mobil
+Tanggal    : 09-01-1998
+Jam Masuk  : 12:00
+Jam Keluar : 21:37
+Durasi     : 10 jam
+Biaya      : Rp 50000,-
+_______________________
+Plat       : AD 3456 YY
+Jenis      : motor
+Tanggal    : 12-02-1999
+Jam Masuk  : 12:30
+Jam Keluar : 23:12
+Durasi     : 11 jam
+Biaya      : Rp 22000,-

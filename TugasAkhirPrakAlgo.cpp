@@ -219,7 +219,15 @@ void menu() {
                     cout << "________________________________" << endl;
                     cout << "Data ke-" << i+1 << endl;
                     cout << "Plat nomor          : "; cin.getline(plat, sizeof(plat));
-                    cout << "Jenis (motor/mobil) : "; cin.getline(jenis, sizeof(jenis));
+                    // cout << "Jenis (motor/mobil) : "; cin.getline(jenis, sizeof(jenis));
+                    while (true) {
+                        cout << "Jenis (motor/mobil) : "; cin.getline(jenis, sizeof(jenis));
+                        if (strcmp(jenis, "motor") == 0 || strcmp(jenis, "mobil") == 0) {
+                            break; // valid
+                        } else {
+                            cout << "Jenis kendaraan tidak valid! Hanya 'motor' atau 'mobil'. Ulangi input.\n";
+                        }
+                    }
                     printf("Tanggal             : "); scanf("%d-%d-%d", &tanggal, &bulan, &tahun);
                     printf("Jam Masuk           : "); scanf("%d.%d", &jamMasuk, &menitMasuk);
                     printf("Jam Keluar          : "); scanf("%d.%d", &jamKeluar, &menitKeluar);
