@@ -219,7 +219,6 @@ void menu() {
                     cout << "________________________________" << endl;
                     cout << "Data ke-" << i+1 << endl;
                     cout << "Plat nomor          : "; cin.getline(plat, sizeof(plat));
-                    // cout << "Jenis (motor/mobil) : "; cin.getline(jenis, sizeof(jenis));
                     while (true) {
                         cout << "Jenis (motor/mobil) : "; cin.getline(jenis, sizeof(jenis));
                         if (strcmp(jenis, "motor") == 0 || strcmp(jenis, "mobil") == 0) {
