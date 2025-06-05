@@ -48,7 +48,6 @@ int hitungMenit(int jamMasuk, int menitMasuk, int jamKeluar, int menitKeluar) {
     int totalKeluar = (jamKeluar * 60) + menitKeluar;
     int durasi = totalKeluar - totalMasuk;
 
-    // Kalau durasi negatif, berarti nyebrang hari (misalnya jam masuk 21.00, keluar 08.00)
     if (durasi < 0) {
         durasi += 24 * 60; // tambah 1 hari (dalam menit)
     }
@@ -250,13 +249,6 @@ void menu() {
                         durasiJam = hitungMenit(jamMasuk, menitMasuk, jamKeluar, menitKeluar);
                         tambahParkir(plat, jenis, tanggal, bulan, tahun, jamMasuk, jamKeluar, menitMasuk, menitKeluar, durasiJam);
                     }
-                    // if(tanggal<1 || tanggal>31 || jamMasuk<0 || jamKeluar>24 || jamKeluar<=jamMasuk) {
-                    //     cout << "Input tidak valid!" << endl;
-                    //     i--;
-                    // } else {
-                    //     durasiJam = hitungMenit(jamMasuk, menitMasuk, jamKeluar, menitKeluar);
-                    //     tambahParkir(plat, jenis, tanggal, bulan, tahun, jamMasuk, jamKeluar, menitMasuk, menitKeluar, durasiJam);
-                    // }
                 }
                 system("pause");
                 break;
